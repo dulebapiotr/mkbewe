@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>hej</pattern>
+    <template>Witam, w czym mogę pomóc?</template>
+  </category>
+    <category>
+    <pattern>dzień dobry</pattern>
+    <template><srai>hej</srai></template>
+  </category>
+    <category>
+    <pattern>halo</pattern>
+    <template><srai>Hej</srai></template>
+  </category>
+  
+  <category>
+    <pattern>godziny</pattern>
+    <that>Witam, w czym mogę pomóc</that>
+    <template>Przyjmujemy zamówienia codziennie od 7:00 do 18:00.</template>
+  </category>
+  <category>
+    <pattern>godziny</pattern>
+    <template>Dzień dobry. Przyjmujemy zamówienia codziennie od 7:00 do 18:00.</template>
+  </category>
+  <category>
+    <pattern>_ godziny</pattern>
+    <template><srai>godziny</srai></template>
+    </category>
+    <category>
+    <pattern>_ godziny _</pattern>
+    <template><srai>godziny</srai></template>
+    </category>
+    <category>
+    <pattern>kiedy _</pattern>
+    <template><srai>godziny</srai></template>
+    </category>
+    
+    <category>
+        <pattern>co tam</pattern>
+        <template>
+        <random>
+            <li>A nudno w tej kuchni...</li>
+            <li>Szybko zamawiaj bo mi się makaron rozgoutuje!</li>
+            <li>Dłuzsze życie każdej pralki to Calgon!</li>
+            <li>Sledzie i nutella to nie jest dobre połączenie ;(</li>
+        </random>
+        </template>
+    </category>
+
+    
+    
+    <category>
+        <pattern>menu</pattern>
+        <template>
+                <ol>
+                    <li>Rosół </li>
+                    <li>Barszcz </li>
+                    <li>Mielony</li>
+                    <li>Schabowy </li>
+                    <li>Ziemniaki</li>
+                    <li>Frytki</li>
+                    <li>Cola</li>
+                    <li>Piwko</li>
+                </ol>
+        </template>
+    </category>
+    <category>
+        <pattern>menu _</pattern>
+        <template><srai>menu</srai></template>
+    </category>
+    <category>
+        <pattern>_ menu</pattern>
+        <template><srai>menu</srai></template>
+    </category>
+    <category>
+        <pattern>_ menu _</pattern>
+        <template><srai>menu</srai></template>
+    </category>
+    
+    <topic name = "ZAMOWIENIE">
+        <category>
+            <pattern>Chcę *</pattern>
+            <template>Podasz mi jeszcze adres?<think><set name="zamowienie"><star /></set></think></template>
+        </category>
+    
+        <category>
+            <pattern>*</pattern>
+            <that>Podasz _</that>
+            <template>Dziękuję <br/> Zamówiłeś: <get name="zamowienie"/><br/>Adres do dostawy:<br/><set name="address"><star /></set><br/>Czy chcesz zamówić jeszcze raz ?
+            </template>
+        </category>
+        
+        <category>
+            <pattern>*</pattern>
+            <that>Dziękuję _</that>
+            <template>
+            <think><set name="var"><uppercase><star /></uppercase></set></think>
+            <condition>
+            <li name="var" value="TAK">
+            Co chcesz zamówić?
+            <think><set name="topic">*</set></think>
+            </li>
+            <li name="var" value="NIE">
+            Dzięki za współpracę :)
+            <think><set name="topic">*</set></think>
+            </li>
+            <li>Tak czy nie ?</li>
+            </condition>
+            </template>
+        </category>
+        
+        <category>
+        <pattern>koniec</pattern>
+        <template>Dzięki za współpracę :)
+            <think><set name="topic">*</set></think></template>
+    </category>
+        
+    </topic>
+    
+    
+    
+    <category>
+        <pattern>zamówić</pattern>
+        <template><think><set name="topic">ZAMOWIENIE</set></think>Jasne !</template>
+    </category>
+    
+    <category>
+        <pattern>_ zamówić</pattern>
+        <template><srai>zamówić</srai></template>
+    </category>
+    <category>
+        <pattern>_ zamawiać</pattern>
+        <template><srai>zamówić</srai></template>
+    </category>
+    
+</aiml>
